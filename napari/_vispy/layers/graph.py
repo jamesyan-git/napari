@@ -13,6 +13,7 @@ class VispyGraphLayer(VispyPointsLayer):
         self.layer.events.edges_visible.connect(
             self._on_edge_visibility_change
         )
+        self._on_edge_visibility_change()
 
     def _on_data_change(self):
         self._set_graph_edges_data()

@@ -247,6 +247,7 @@ class Graph(_BasePoints):
         face_color_cycle=None,
         face_colormap='viridis',
         face_contrast_limits=None,
+        edges_visible=True,
         out_of_slice_display=False,
         n_dimensional=None,
         name=None,
@@ -268,7 +269,6 @@ class Graph(_BasePoints):
     ) -> None:
         self._data = self._fix_data(data, ndim)
         self._edges_indices_view: ArrayLike = []
-        self._edges_visible = True
 
         super().__init__(
             self._data,
@@ -319,6 +319,9 @@ class Graph(_BasePoints):
             current_edge_color=Event,
         )
         self.events.add(edges_visible=Event)
+
+        self.edges_visible = edges_visible
+        self.refresh()
 
     @staticmethod
     def _fix_data(

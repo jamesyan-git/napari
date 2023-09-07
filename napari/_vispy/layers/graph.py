@@ -34,10 +34,16 @@ class VispyGraphLayer(VispyPointsLayer):
 
         # clearing up buffer, there was a vispy error otherwise
         subvisual._line_visual._pos_vbo = gloo.VertexBuffer()
+        color = 'white'
+        width = 1
+        # keep original color if it exists and num edges is unchanged
+        if (old_pos := subvisual.pos) is not None and len(old_pos) == len(flat_edges):
+            color = subvisual.color
+            width = subvisual.width
         subvisual.set_data(
             flat_edges,
-            color='white',
-            width=1,
+            color= color,
+            width=width,
         )
 
     def _on_edge_visibility_change(self):
@@ -54,3 +60,4 @@ class VispyGraphLayer(VispyPointsLayer):
             color=color,
             width=1,
         )
+   

@@ -321,7 +321,6 @@ class Graph(_BasePoints):
         self.events.add(edges_visible=Event)
 
         self.edges_visible = edges_visible
-        self.refresh()
 
     @staticmethod
     def _fix_data(
